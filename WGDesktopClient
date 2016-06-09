@@ -1,0 +1,60 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * 1 - Import File
+ * 		Exception if file could not be found
+ * 2 - Perform ALGO calculation
+ * 3 - Export File
+ * 	- Future- graphical output
+ * 
+ */
+
+public class WGDesktopClient {
+	
+	public String LocateFile(){
+		String fileName = "/Users/austinwhaley/Desktop/Practice.csv"; //file being scanned
+		return fileName;
+		
+	}
+	
+	public ArrayList<String> ImportFile(String fileName) throws FileNotFoundException{
+		ArrayList<String> importData = new ArrayList<String>(); //storage variable
+		Scanner scanner = new Scanner(new File(fileName)); //scanning file
+		scanner.useDelimiter(","); //separates each element with ","
+		while (scanner.hasNextLine()){ //adds each line to the importData ArrayList
+			//System.out.println(scanner.nextLine() + ","); //DEBUG CODE
+			importData.add(scanner.nextLine());
+			
+		}
+		//for (String i: importData){ //Debug code to ensure data has been read in properly
+		//	System.out.println(i);
+		//}
+		scanner.close(); //closes connect
+		return importData; //returns ArrayList for Stage 2
+	}
+	
+	public void Algorithm(ArrayList<String> importData) { 
+		//Do Something
+		for (String element: importData){
+			System.out.println(element);
+		}
+	}
+	
+	public void ExportFile(){ //Export File in X Format
+		//Do Something
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		WGDesktopClient WG = new WGDesktopClient();
+		
+		String fileName = WG.LocateFile();
+		ArrayList<String> importData = WG.ImportFile(fileName);
+		WG.Algorithm(importData);
+		
+		System.out.println("Complete!");
+	}
+
+}
